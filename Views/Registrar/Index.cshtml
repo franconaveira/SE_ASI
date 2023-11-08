@@ -1,0 +1,252 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registrar";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito&family=Lato&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>Registrar Denuncia</title>
+    <style>
+        /* Estilos para el header */
+        header {
+            background-color: #121212; /* Fondo oscuro */
+            color: white; /* Color del texto blanco */
+            padding: 8px; /* Espaciado interno */
+            text-align: left; /* Alineación del texto a la izquierda */
+            font-family: 'Gabarito', cursive;
+            font-family: 'Lato', sans-serif;
+        }
+
+            header h1 {
+                font-size: 36px; /* Tamaño de fuente */
+                margin: 0; /* Elimina el margen para evitar espacio extra */
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+            }
+
+        /* Estilos para el banner y los botones */
+        .banner {
+            background-color: #0c2133; /* Fondo oscuro */
+            padding: 0px; /* Espaciado interno */
+            display: flex;
+            justify-content: flex-start; /* Alinea los botones a la izquierda */
+        }
+
+            .banner button {
+                padding: 15px 30px;
+                font-size: 18px;
+                margin-right: 0px; /* Espaciado entre botones */
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease; /* Transición suave del color */
+                font-family: 'Gabarito', cursive;
+                font-family: 'Lato', sans-serif;
+                background-color: #0c2133; /* Color de fondo oscuro para el banner */
+                color: white; /* Color del texto */
+            }
+
+                .banner button:hover {
+                    background-color: #1565c0; /* Cambia el color al pasar el ratón */
+                }
+
+        /* Estilos para el formulario */
+        .form-container {
+            margin: 20px auto; /* Centrar en la página */
+            background-color: #f0f0f0; /* Fondo gris claro */
+            padding: 30px; /* Aumentar el espacio interno */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra */
+            max-width: 800px; /* Ancho máximo del contenedor */
+        }
+
+            .form-container label {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 18px;
+                font-family: 'Gabarito', cursive;
+                font-family: 'Lato', sans-serif;
+            }
+
+            .form-container input {
+                width: calc(100% - 20px); /* Ancho ajustado */
+                padding: 15px;
+                font-size: 18px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc; /* Borde ligero */
+                border-radius: 5px; /* Bordes redondeados */
+                font-family: 'Gabarito', cursive;
+                font-family: 'Lato', sans-serif;
+            }
+
+            .form-container button {
+                padding: 15px 30px;
+                font-size: 18px;
+                border: none;
+                display: block; /* Convertir en elemento bloque para centrar horizontalmente */
+                margin: 0 auto; /* Centrar horizontalmente */
+                border-radius: 5px; /* Bordes redondeados */
+                transition: background-color 0.3s ease; /* Transición suave del color */
+                font-family: 'Gabarito', cursive;
+                font-family: 'Lato', sans-serif;
+                background-color: #333; /* Color de fondo oscuro para el botón */
+                color: white; /* Color del texto */
+            }
+
+                .form-container button:hover {
+                    background-color: #1565c0; /* Cambia el color al pasar el ratón */
+                }
+
+        /* Estilos para la ventana modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-height: 70%; /* Máximo 70% de la altura de la ventana */
+            overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+            word-wrap: break-word; /* Rompe las palabras largas si no caben */
+            box-sizing: border-box;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Apoyo en la Detección de ASI</h1>
+    </header>
+
+    <div class="banner">
+        <button onclick="irAInicio()">Inicio</button>
+        <button onclick="irARegistro()">Registrar Denuncia Judicial</button>
+        <button onclick="irAConfirmar()">Confirmación Experto</button>
+        <button onclick="irAConfirmarJudicial()">Confirmación Judicial</button>
+    </div>
+
+    <div class="form-container">
+        <h2>Registrar n° de denuncia legal a diagnóstico:</h2>
+        <br />
+        <form id="formulario">
+            <label for="numExpediente">Número de diagnóstico:</label>
+            <input type="text" id="numExpediente" placeholder="Ingrese el número de diagnóstico">
+
+            <label for="numDenuncia">Número de Denuncia:</label>
+            <input type="text" id="numDenuncia" placeholder="Ingrese el número de denuncia">
+
+            <button type="button" id="enviar">Guardar</button>
+        </form>
+    </div>
+    <!-- Contenedor de la ventana modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <pre id="jsonContent"></pre>
+        </div>
+    </div>
+
+    <script>
+        function irAInicio() {
+            window.location.href = "/Home";
+        }
+
+        function irARegistro() {
+            window.location.href = "/Registrar";
+        }
+
+        function irAConfirmar() {
+            window.location.href = "/Confirmar";
+        }
+    </script>
+
+    <script>
+        document.getElementById('enviar').addEventListener('click', function ()
+        {
+
+            // Obtener todas las respuestas del formulario y crear un objeto JSON
+            /*const formData = new FormData(document.getElementById('formulario'));
+            const respuestaObj = {};
+            for (const [key, value] of formData.entries()) {
+                respuestaObj[key] = value;
+                console.log = value;
+            }
+            console.log(JSON.stringify(respuestaObj));
+            var js = JSON.stringify(respuestaObj);
+            */
+            var respuestaJS;
+            
+            const valNumExp = document.getElementById('numExpediente').value;
+            const valNumDenu = document.getElementById('numDenuncia').value;
+            const js = {
+                numExpediente: valNumExp,
+                numDenuncia: valNumDenu
+            };
+
+            const jsString = JSON.stringify(js);
+            console.log(js);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("registrarDenuncia", "Registrar")',
+            dataType: "string",
+            data: jsString,
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            success: function (respuesta) {
+                console.log("Respuesta en formato string:", respuesta);
+                respuestaJS = respuesta;
+                
+            }
+        });
+            console.log("Respuesta en formato string:", respuestaJS);
+            //////////////////////Agregado//////////////////////////
+            // Mostrar la ventana modal con el contenido JSON
+            const modal = document.getElementById('myModal');
+            const jsonContent = document.getElementById('jsonContent');
+            var message = respuestaJS;
+            jsonContent.innerText = "Registro Actualizado.";
+
+            modal.style.display = 'block';
+
+            // Cuando el usuario hace clic en la 'x', cerrar la ventana modal
+            const closeButton = document.getElementsByClassName('close')[0];
+            closeButton.onclick = function () {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+

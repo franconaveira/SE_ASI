@@ -1,0 +1,564 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito&family=Lato&display=swap" rel="stylesheet">
+
+    <title>Home</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Apoyo en la Detección de ASI</title>
+    <style>
+        body {
+            font-family: 'Gabarito', cursive;
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #121212;
+            color: white;
+            text-align: left;
+            padding: 10px;
+        }
+
+            header h6 {
+                background-color: #4D5F6F;
+                color: white;
+                height: 10px;
+            }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px; /* Espacio entre el label y la lista desplegable */
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px; /* Espacio adicional entre las preguntas */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Estilos para la ventana modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-height: 70%; /* Máximo 70% de la altura de la ventana */
+            overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+            word-wrap: break-word; /* Rompe las palabras largas si no caben */
+            box-sizing: border-box;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        /* Estilos para el signo de pregunta */
+        .question-mark {
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 14px;
+            color: white; /* Cambia el color del texto */
+            /*background-color: #6bc7ff*/ /* Cambia el color de fondo */
+            background-color: #4579a8; /* Cambia el color de fondo */
+            border-radius: 50%; /* Dale forma circular */
+            padding: 2px 5px; /* Ajusta el espacio alrededor */
+        }
+
+
+        /* Estilos para el banner y los botones */
+        .banner {
+            background-color: #0c2133; /* Fondo oscuro */
+            padding: 0px; /* Espaciado interno */
+            display: flex;
+            justify-content: flex-start; /* Alinea los botones a la izquierda */
+        }
+
+            .banner button {
+                padding: 15px 30px;
+                font-size: 18px;
+                margin-right: 0px; /* Espaciado entre botones */
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease; /* Transición suave del color */
+                font-family: 'Gabarito', cursive;
+                font-family: 'Lato', sans-serif;
+                background-color: #0c2133; /* Color de fondo oscuro para el banner */
+                color: white; /* Color del texto */
+            }
+
+                .banner button:hover {
+                    background-color: #1565c0; /* Cambia el color al pasar el ratón */
+                }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Apoyo en la Detección de ASI</h1>
+    </header>
+
+    <div class="banner">
+        <button onclick="irAInicio()">Inicio</button>
+        <button onclick="irARegistro()">Registrar Denuncia</button>
+        <button onclick="irAConfirmar()">Confirmación Experto</button>
+        <button onclick="irAConfirmarJudicial()">Confirmación Judicial</button>
+    </div>
+
+    <div class="container">
+        <h7> Por favor, responda las siguientes preguntas:</h7>
+    </div>
+    <div class="container">
+        <form id="formulario">
+            <label for="edad">
+                ¿Cuál es la edad del niño/a o adolescente?
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Seleccione la edad del chico/a que puede estar en una situación de ASI')">
+                    ?
+                </span>
+            </label>
+            <select id="edad" name="edad">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+            </select>
+
+            <label for="relato">
+                ¿El niño/a o adolescente relata haber sufrido un abuso?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Esta pregunta hacer referencia a si el niño adolescente indicó verbalmente o de forma escrita que sufrió un abuso. También en caso que se haya presenciado la situación por parte de un tercero')">
+                    ?
+                </span>
+            </label>
+            <select id="relato" name="relato">
+                <option value="No">No</option>
+                <option value="Relato_verbal">Lo expresó verbalmente</option>
+                <option value="Relato_escrito">Lo expresó escribiendolo</option>
+                <option value="Se_presencio">Alguien lo presenció</option>
+            </select>
+
+            <label for="sexo">
+                ¿Cuál es el sexo del niño/a o adolescente?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Femenino o Masculino')">
+                    ?
+                </span>
+            </label>
+            <select id="sexo" name="sexo">
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+
+            <label for="semen">
+                ¿Se observa u observó restos de semen sobre el cuerpo o ropa del menor?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar si usted o alguien observó restos de semen sobre el cuerpo del menor o en su ropa')">
+                    ?
+                </span>
+            </label>
+            <select id="semen" name="semen">
+                <option value="No_se_observa">No</option>
+                <option value="Se_observa">Si</option>
+                <option value="No_se_observa">No sabe</option>
+            </select>
+
+            <label for="enfermedad_transm_sexual">
+                ¿El niño/a o adolescente posee enfermedades de transmision sexual?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar que Si en caso de tener conocimiento de que el menor sufra de alguna enfermedad de transmisión sexual. Estas pueden ser por ejemplo VIH, HPV, Hepatitis')">
+                    ?
+                </span>
+            </label>
+            <select id="enfermedad_transm_sexual" name="enfermedad_transm_sexual">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No sabe</option>
+            </select>
+
+            <label for="lesiones_genitales">
+                ¿Existen o existieron lesiones genitales?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar que Si en caso de que se hayan observado lesiones en la zona genital o si el menor manifestó tenerlas.')">
+                    ?
+                </span>
+
+            </label>
+            <select id="lesiones_genitales" name="lesiones_genitales">
+                <option value="Nunca">Nunca</option>
+                <option value="Frecuente">Frecuentemente</option>
+                <option value="A_Veces">A Veces</option>
+                <option value="Nunca">No sabe</option>
+            </select>
+
+            <label for="inflamacion_vaginal">
+                ¿Existe o existió inflamacion vaginal?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar que Si en caso de que se haya observado inflamación vaginal o si el menor manifestó tenerla')">
+                    ?
+                </span>
+            </label>
+            <select id="inflamacion_vaginal" name="inflamacion_vaginal">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No sabe</option>
+            </select>
+
+            <label for="gestando">
+                ¿Se encuentra cursando un embarazo el menor?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar si está en conocimiento de que la menor esté embarazada.')">
+                    ?
+                </span>
+            </label>
+            <select id="gestando" name="gestando">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No sabe</option>
+            </select>
+
+            <label for="incontinencia_urinaria">
+                ¿El niño/a o adolescente presenta incontinencia urinaria?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Incontinencia urinaria significa que el menor no puede contener la necesidad de orinar. Se presenció o se observó en la ropa')">
+                    ?
+                </span>
+            </label>
+            <select id="incontinencia_urinaria" name="incontinencia_urinaria">
+                <option value="No_presenta">No</option>
+                <option value="Presenta">Si</option>
+                <option value="No_presenta">No sabe</option>
+            </select>
+
+            <label for="dolores_de_abdomen">
+                ¿El niño/a o adolescente presenta dolores abdominales?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar si presenta dolores en la zona abdominal y la panza frecuentemente')">
+                    ?
+                </span>
+            </label>
+            <select id="dolores_de_abdomen" name="dolores_de_abdomen">
+                <option value="Nunca">Nunca</option>
+                <option value="Frecuente">Frecuentemente</option>
+                <option value="A_Veces">A Veces</option>
+                <option value="Nunca">No sabe</option>
+            </select>
+
+            <label for="incontinencia_fecal">
+                ¿El niño/a o adolescente presenta incontinencia fecal?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Incontinencia fecal significa que el menor no puede contener la necesidad de defecar. Se presenció o se observó en la ropa')">
+                    ?
+                </span>
+            </label>
+            <select id="incontinencia_fecal" name="incontinencia_fecal">
+                <option value="No_presenta">No</option>
+                <option value="Presenta">Si</option>
+                <option value="No_presenta">No sabe</option>
+            </select>
+
+            <label for="conductas_Sexualizadas">
+                ¿El niño/a o adolescente presenta conductas sexualizadas que le llamen la atencion?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar si hay comportamientos en el menor en referencia a lo sexual que le llame la atención a usted o entorno.')">
+                    ?
+                </span>
+            </label>
+            <select id="conductas_Sexualizadas" name="conductas_Sexualizadas">
+                <option value="No_presenta">No</option>
+                <option value="Hipersexualidad">Hipersexualidad</option>
+                <option value="Hipersexualidad">Conductas inapropiadas</option>
+                <option value="No_presenta">No sabe</option>
+            </select>
+
+            <label for="fugas">
+                ¿El niño/a o adolescente se ha fugado del hogar en alguna oportunidad?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar que Si en caso de estar en conocimiento de que el menor se haya escapado de la casa en alguna oportunidad')">
+                    ?
+                </span>
+            </label>
+            <select id="fugas" name="fugas">
+                <option value="No_presenta">No</option>
+                <option value="Presenta">Si</option>
+                <option value="No_presenta">No sabe</option>
+            </select>
+
+            <label for="consumo_problematico">
+                ¿El niño/a o adolescente demuestra adiccion a drogas o alcohol?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Se observa una adicción a las drogas o alcohol.')">
+                    ?
+                </span>
+            </label>
+            <select id="consumo_problematico" name="consumo_problematico">
+                <option value="No_presenta">No</option>
+                <option value="Presenta">Si</option>
+                <option value="No_presenta">No sabe</option>
+            </select>
+
+            <label for="retraido">
+                ¿Se observa al niño/a o adolescente con un comportamiento retraido?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Esto se refiere al comportamiento del menor')">
+                    ?
+                </span>
+            </label>
+            <select id="retraido" name="retraido">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No sabe</option>
+            </select>
+
+            <label for="autolesiones">
+                ¿El niño/a o adolescente se provoca lesiones a si mismo?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Estas lesiones pueden ser cortes, golpes, etc')">
+                    ?
+                </span>
+            </label>
+            <select id="autolesiones" name="autolesiones">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No sabe</option>
+            </select>
+
+            <label for="problemas_al_dormir">
+                ¿El niño/a o adolescente tiene problemas al dormir?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Tiene problemas al dormir que previamente no poseía, pesadillas insomnio.')">
+                    ?
+                </span>
+            </label>
+            <select id="problemas_al_dormir" name="problemas_al_dormir">
+                <option value="No">No</option>
+                <option value="Pesadillas">Pesadillas</option>
+                <option value="Insomnio">Insomnio</option>
+                <option value="No">No sabe</option>
+            </select>
+
+            <label for="comportamientoSuicida">
+                ¿El niño/a o adolescente tuvo intentos de suicidio?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar que si en caso de saber si el menor intentó suicidarse en alguna oportunidad al menos')">
+                    ?
+                </span>
+
+            </label>
+            <select id="comportamientoSuicida" name="comportamientoSuicida">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No Sabe</option>
+            </select>
+
+            <label for="problemas_alimenticios">
+                ¿El niño/a o adolescente tiene problemas alimenticios?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Indicar que si en caso de que el menor tenga problemas alimenticios')">
+                    ?
+                </span>
+            </label>
+            <select id="problemas_alimenticios" name="problemas_alimenticios">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No Sabe</option>
+            </select>
+
+            <label for="terrores_sin_causa_aparente">
+                ¿El niño/a o adolescente tiene terrores sin una causa aparente?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Esto se refiere a temores que el menor puede tener y que no tengan una justificación clara')">
+                    ?
+                </span>
+            </label>
+            <select id="terrores_sin_causa_aparente" name="terrores_sin_causa_aparente">
+                <option value="No">No</option>
+                <option value="Temor_a_lugar_especifico">Temor a lugar específico</option>
+                <option value="Fobias">Fobias</option>
+                <option value="No">No Sabe</option>
+            </select>
+
+            <label for="desconexion_mental">
+                ¿El niño/a o adolescente presenta disociación?:
+                <span class="question-mark"
+                      onclick="mostrarExplicacion('Se lo nota al chico/a desconectado del resto, aislado, pensando constantemente en otra cosa')">
+                    ?
+                </span>
+            </label>
+            <select id="desconexion_mental" name="desconexion_mental">
+                <option value="No">No</option>
+                <option value="Si">Si</option>
+                <option value="No">No Sabe</option>
+            </select>
+
+            <button type="button" id="enviar">Enviar respuestas</button>
+        </form>
+    </div>
+
+    <!-- Contenedor de la ventana modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <pre id="jsonContent"></pre>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('enviar').addEventListener('click', function ()
+        {
+
+            // Obtener todas las respuestas del formulario y crear un objeto JSON
+            const formData = new FormData(document.getElementById('formulario'));
+            const respuestaObj = {};
+            for (const [key, value] of formData.entries()) {
+                respuestaObj[key] = value;
+            }
+            console.log(JSON.stringify(respuestaObj));
+            var js = JSON.stringify(respuestaObj);
+            var respuestaJS;
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("detectarASI", "Home")',
+            dataType: "json",
+            data: js,
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            success: function (respuesta) {
+                respuestaJS = JSON.stringify(respuesta);
+                console.log(JSON.stringify(respuesta));
+            }
+        });
+
+            //////////////////////Agregado//////////////////////////
+            // Mostrar la ventana modal con el contenido JSON
+            const modal = document.getElementById('myModal');
+            const jsonContent = document.getElementById('jsonContent');
+            var message = JSON.parse(respuestaJS);
+
+            jsonContent.innerText = "Número de diagnóstico: " + message.numeroDiagnostico + "\nNivel de sospecha: " + message.gradoSospecha + "\nObservacion: " + message.abordaje + "\n\n\nReglas Ejecutadas:" + message.explicacion;
+            
+
+            modal.style.display = 'block';
+
+            // Cuando el usuario hace clic en la 'x', cerrar la ventana modal
+            const closeButton = document.getElementsByClassName('close')[0];
+            closeButton.onclick = function () {
+                modal.style.display = 'none';
+            }
+        });
+
+    </script>
+    <script>
+        //////////////////////Agregado//////////////////////////
+
+        // Función para mostrar la explicación al hacer clic en el signo de pregunta
+        function mostrarExplicacion(explicacion) {
+            // Mostrar la ventana modal con el contenido JSON
+            const modal = document.getElementById('myModal');
+            const jsonContent = document.getElementById('jsonContent');
+            jsonContent.innerText = explicacion;
+
+            modal.style.display = 'block';
+
+            // Cuando el usuario hace clic en la 'x', cerrar la ventana modal
+            const closeButton = document.getElementsByClassName('close')[0];
+            closeButton.onclick = function () {
+                modal.style.display = 'none';
+            }
+
+        }
+    </script>
+    <script>
+        function irAInicio() {
+            window.location.href = "/Home";
+        }
+
+        function irARegistro() {
+            window.location.href = "/Registrar";
+        }
+
+        function irAConfirmar() {
+            window.location.href = "/Confirmar";
+        }
+        function irAConfirmarJudicial() {
+            window.location.href = "/Confirmar_Judicial";
+        }
+    </script>
+</body>
+</html>
+

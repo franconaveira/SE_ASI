@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SE_ASIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Diagnostico">
+    <Key>
+      <PropertyRef Name="ID_Diagnostico" />
+    </Key>
+    <Property Name="ID_Indicadores_Obtenidos" Type="int" />
+    <Property Name="ID_Diagnostico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Confirmacion_Experto" Type="bit" />
+    <Property Name="Numero_Denuncia_Legal" Type="varchar" MaxLength="50" />
+    <Property Name="Confirmacion_Legal" Type="bit" />
+    <Property Name="Sospecha" Type="bit" />
+    <Property Name="Nivel" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion_Abordaje" Type="varchar(max)" />
+    <Property Name="Diagnostico_Experto" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Indicadores_Obtenidos">
+    <Key>
+      <PropertyRef Name="ID_Indicadores_Obtenidos" />
+    </Key>
+    <Property Name="ID_Indicadores_Obtenidos" Type="int" Nullable="false" />
+    <Property Name="Embarazo" Type="bit" />
+    <Property Name="Rango_Etario" Type="varchar" MaxLength="50" />
+    <Property Name="Restos_de_semen" Type="bit" />
+    <Property Name="ETS" Type="bit" />
+    <Property Name="Lesion_zona_genital" Type="bit" />
+    <Property Name="Enuresis" Type="bit" />
+    <Property Name="Dolores_abdominales" Type="bit" />
+    <Property Name="Encopresis" Type="bit" />
+    <Property Name="Relato_de_abuso" Type="bit" />
+    <Property Name="Conductas_sexualizadas_no_esperables" Type="bit" />
+    <Property Name="Fugas_del_hogar" Type="bit" />
+    <Property Name="Problemática_de_consumo" Type="bit" />
+    <Property Name="Conductas_autoagresivas" Type="bit" />
+    <Property Name="Retraimiento" Type="bit" />
+    <Property Name="Trastornos_del_sueño" Type="bit" />
+    <Property Name="Trastornos_alimentarios" Type="bit" />
+    <Property Name="Terrores_inexplicables" Type="bit" />
+    <Property Name="Disociación" Type="bit" />
+    <Property Name="Inflamación_zona_vaginal" Type="bit" />
+    <Property Name="Sexo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Informe_Recibido">
+    <Key>
+      <PropertyRef Name="ID_Informe" />
+    </Key>
+    <Property Name="Edad" Type="int" />
+    <Property Name="ID_Informe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gestando" Type="bit" />
+    <Property Name="Semen" Type="varchar" MaxLength="50" />
+    <Property Name="Comportamiento_suicida" Type="bit" />
+    <Property Name="Autolesiones" Type="varchar" MaxLength="50" />
+    <Property Name="Enfermedad_transm_sexual" Type="varchar" MaxLength="50" />
+    <Property Name="Lesiones_genitales" Type="varchar" MaxLength="50" />
+    <Property Name="Inflamación_Vaginal" Type="bit" />
+    <Property Name="Incontinencia_urinaria" Type="varchar" MaxLength="50" />
+    <Property Name="Dolores_de_abdomen" Type="varchar" MaxLength="50" />
+    <Property Name="Incontinencia_fecal" Type="varchar" MaxLength="50" />
+    <Property Name="Conductas_Sexualizadas" Type="varchar" MaxLength="50" />
+    <Property Name="Fugas" Type="varchar" MaxLength="50" />
+    <Property Name="Consumo_problemático" Type="varchar" MaxLength="50" />
+    <Property Name="Retraido" Type="bit" />
+    <Property Name="Problemas_al_dormir" Type="varchar" MaxLength="50" />
+    <Property Name="Problemas_alimenticios" Type="varchar" MaxLength="50" />
+    <Property Name="Terrores_sin_causa_aparente" Type="varchar" MaxLength="50" />
+    <Property Name="Desconexión_mental" Type="varchar" MaxLength="50" />
+    <Property Name="Relato" Type="varchar" MaxLength="50" />
+    <Property Name="Sexo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID_Rol" />
+    </Key>
+    <Property Name="ID_Rol" Type="int" Nullable="false" />
+    <Property Name="Rol" Type="varchar" MaxLength="50" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion_Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Contrasena" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="SE_ASIModelStoreContainer">
+    <EntitySet Name="Diagnostico" EntityType="Self.Diagnostico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Indicadores_Obtenidos" EntityType="Self.Indicadores_Obtenidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Informe_Recibido" EntityType="Self.Informe_Recibido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

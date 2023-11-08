@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SE_ASIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Diagnostico">
+          <Key>
+            <PropertyRef Name="ID_Diagnostico" />
+          </Key>
+          <Property Name="ID_Indicadores_Obtenidos" Type="int" />
+          <Property Name="ID_Diagnostico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Confirmacion_Experto" Type="bit" />
+          <Property Name="Numero_Denuncia_Legal" Type="varchar" MaxLength="50" />
+          <Property Name="Confirmacion_Legal" Type="bit" />
+          <Property Name="Sospecha" Type="bit" />
+          <Property Name="Nivel" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion_Abordaje" Type="varchar(max)" />
+          <Property Name="Diagnostico_Experto" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Indicadores_Obtenidos">
+          <Key>
+            <PropertyRef Name="ID_Indicadores_Obtenidos" />
+          </Key>
+          <Property Name="ID_Indicadores_Obtenidos" Type="int" Nullable="false" />
+          <Property Name="Embarazo" Type="bit" />
+          <Property Name="Rango_Etario" Type="varchar" MaxLength="50" />
+          <Property Name="Restos_de_semen" Type="bit" />
+          <Property Name="ETS" Type="bit" />
+          <Property Name="Lesion_zona_genital" Type="bit" />
+          <Property Name="Enuresis" Type="bit" />
+          <Property Name="Dolores_abdominales" Type="bit" />
+          <Property Name="Encopresis" Type="bit" />
+          <Property Name="Relato_de_abuso" Type="bit" />
+          <Property Name="Conductas_sexualizadas_no_esperables" Type="bit" />
+          <Property Name="Fugas_del_hogar" Type="bit" />
+          <Property Name="Problemática_de_consumo" Type="bit" />
+          <Property Name="Conductas_autoagresivas" Type="bit" />
+          <Property Name="Retraimiento" Type="bit" />
+          <Property Name="Trastornos_del_sueño" Type="bit" />
+          <Property Name="Trastornos_alimentarios" Type="bit" />
+          <Property Name="Terrores_inexplicables" Type="bit" />
+          <Property Name="Disociación" Type="bit" />
+          <Property Name="Inflamación_zona_vaginal" Type="bit" />
+          <Property Name="Sexo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Informe_Recibido">
+          <Key>
+            <PropertyRef Name="ID_Informe" />
+          </Key>
+          <Property Name="Edad" Type="int" />
+          <Property Name="ID_Informe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gestando" Type="bit" />
+          <Property Name="Semen" Type="varchar" MaxLength="50" />
+          <Property Name="Comportamiento_suicida" Type="bit" />
+          <Property Name="Autolesiones" Type="varchar" MaxLength="50" />
+          <Property Name="Enfermedad_transm_sexual" Type="varchar" MaxLength="50" />
+          <Property Name="Lesiones_genitales" Type="varchar" MaxLength="50" />
+          <Property Name="Inflamación_Vaginal" Type="bit" />
+          <Property Name="Incontinencia_urinaria" Type="varchar" MaxLength="50" />
+          <Property Name="Dolores_de_abdomen" Type="varchar" MaxLength="50" />
+          <Property Name="Incontinencia_fecal" Type="varchar" MaxLength="50" />
+          <Property Name="Conductas_Sexualizadas" Type="varchar" MaxLength="50" />
+          <Property Name="Fugas" Type="varchar" MaxLength="50" />
+          <Property Name="Consumo_problemático" Type="varchar" MaxLength="50" />
+          <Property Name="Retraido" Type="bit" />
+          <Property Name="Problemas_al_dormir" Type="varchar" MaxLength="50" />
+          <Property Name="Problemas_alimenticios" Type="varchar" MaxLength="50" />
+          <Property Name="Terrores_sin_causa_aparente" Type="varchar" MaxLength="50" />
+          <Property Name="Desconexión_mental" Type="varchar" MaxLength="50" />
+          <Property Name="Relato" Type="varchar" MaxLength="50" />
+          <Property Name="Sexo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Rol" />
+          </Key>
+          <Property Name="ID_Rol" Type="int" Nullable="false" />
+          <Property Name="Rol" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion_Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SE_ASIModelStoreContainer">
+          <EntitySet Name="Diagnostico" EntityType="Self.Diagnostico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Indicadores_Obtenidos" EntityType="Self.Indicadores_Obtenidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informe_Recibido" EntityType="Self.Informe_Recibido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SE_ASIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Diagnostico">
+          <Key>
+            <PropertyRef Name="ID_Diagnostico" />
+          </Key>
+          <Property Name="ID_Indicadores_Obtenidos" Type="Int32" />
+          <Property Name="ID_Diagnostico" Type="Int32" Nullable="false" />
+          <Property Name="Confirmacion_Experto" Type="Boolean" />
+          <Property Name="Numero_Denuncia_Legal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Confirmacion_Legal" Type="Boolean" />
+          <Property Name="Sospecha" Type="Boolean" />
+          <Property Name="Nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion_Abordaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Diagnostico_Experto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Indicadores_Obtenidos">
+          <Key>
+            <PropertyRef Name="ID_Indicadores_Obtenidos" />
+          </Key>
+          <Property Name="ID_Indicadores_Obtenidos" Type="Int32" Nullable="false" />
+          <Property Name="Embarazo" Type="Boolean" />
+          <Property Name="Rango_Etario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Restos_de_semen" Type="Boolean" />
+          <Property Name="ETS" Type="Boolean" />
+          <Property Name="Lesion_zona_genital" Type="Boolean" />
+          <Property Name="Enuresis" Type="Boolean" />
+          <Property Name="Dolores_abdominales" Type="Boolean" />
+          <Property Name="Encopresis" Type="Boolean" />
+          <Property Name="Relato_de_abuso" Type="Boolean" />
+          <Property Name="Conductas_sexualizadas_no_esperables" Type="Boolean" />
+          <Property Name="Fugas_del_hogar" Type="Boolean" />
+          <Property Name="Problemática_de_consumo" Type="Boolean" />
+          <Property Name="Conductas_autoagresivas" Type="Boolean" />
+          <Property Name="Retraimiento" Type="Boolean" />
+          <Property Name="Trastornos_del_sueño" Type="Boolean" />
+          <Property Name="Trastornos_alimentarios" Type="Boolean" />
+          <Property Name="Terrores_inexplicables" Type="Boolean" />
+          <Property Name="Disociación" Type="Boolean" />
+          <Property Name="Inflamación_zona_vaginal" Type="Boolean" />
+          <Property Name="Sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Informe_Recibido">
+          <Key>
+            <PropertyRef Name="ID_Informe" />
+          </Key>
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="ID_Informe" Type="Int32" Nullable="false" />
+          <Property Name="Gestando" Type="Boolean" />
+          <Property Name="Semen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Comportamiento_suicida" Type="Boolean" />
+          <Property Name="Autolesiones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enfermedad_transm_sexual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lesiones_genitales" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Inflamación_Vaginal" Type="Boolean" />
+          <Property Name="Incontinencia_urinaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dolores_de_abdomen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Incontinencia_fecal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Conductas_Sexualizadas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fugas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Consumo_problemático" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Retraido" Type="Boolean" />
+          <Property Name="Problemas_al_dormir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Problemas_alimenticios" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Terrores_sin_causa_aparente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Desconexión_mental" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Relato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Rol" />
+          </Key>
+          <Property Name="ID_Rol" Type="Int32" Nullable="false" />
+          <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SE_ASIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Diagnostico" EntityType="Self.Diagnostico" />
+          <EntitySet Name="Indicadores_Obtenidos" EntityType="Self.Indicadores_Obtenidos" />
+          <EntitySet Name="Informe_Recibido" EntityType="Self.Informe_Recibido" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SE_ASIModelStoreContainer" CdmEntityContainer="SE_ASIEntities">
+          <EntitySetMapping Name="Diagnostico">
+            <EntityTypeMapping TypeName="SE_ASIModel.Diagnostico">
+              <MappingFragment StoreEntitySet="Diagnostico">
+                <ScalarProperty Name="Diagnostico_Experto" ColumnName="Diagnostico_Experto" />
+                <ScalarProperty Name="ID_Indicadores_Obtenidos" ColumnName="ID_Indicadores_Obtenidos" />
+                <ScalarProperty Name="ID_Diagnostico" ColumnName="ID_Diagnostico" />
+                <ScalarProperty Name="Confirmacion_Experto" ColumnName="Confirmacion_Experto" />
+                <ScalarProperty Name="Numero_Denuncia_Legal" ColumnName="Numero_Denuncia_Legal" />
+                <ScalarProperty Name="Confirmacion_Legal" ColumnName="Confirmacion_Legal" />
+                <ScalarProperty Name="Sospecha" ColumnName="Sospecha" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Descripcion_Abordaje" ColumnName="Descripcion_Abordaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Indicadores_Obtenidos">
+            <EntityTypeMapping TypeName="SE_ASIModel.Indicadores_Obtenidos">
+              <MappingFragment StoreEntitySet="Indicadores_Obtenidos">
+                <ScalarProperty Name="ID_Indicadores_Obtenidos" ColumnName="ID_Indicadores_Obtenidos" />
+                <ScalarProperty Name="Embarazo" ColumnName="Embarazo" />
+                <ScalarProperty Name="Rango_Etario" ColumnName="Rango_Etario" />
+                <ScalarProperty Name="Restos_de_semen" ColumnName="Restos_de_semen" />
+                <ScalarProperty Name="ETS" ColumnName="ETS" />
+                <ScalarProperty Name="Lesion_zona_genital" ColumnName="Lesion_zona_genital" />
+                <ScalarProperty Name="Enuresis" ColumnName="Enuresis" />
+                <ScalarProperty Name="Dolores_abdominales" ColumnName="Dolores_abdominales" />
+                <ScalarProperty Name="Encopresis" ColumnName="Encopresis" />
+                <ScalarProperty Name="Relato_de_abuso" ColumnName="Relato_de_abuso" />
+                <ScalarProperty Name="Conductas_sexualizadas_no_esperables" ColumnName="Conductas_sexualizadas_no_esperables" />
+                <ScalarProperty Name="Fugas_del_hogar" ColumnName="Fugas_del_hogar" />
+                <ScalarProperty Name="Problemática_de_consumo" ColumnName="Problemática_de_consumo" />
+                <ScalarProperty Name="Conductas_autoagresivas" ColumnName="Conductas_autoagresivas" />
+                <ScalarProperty Name="Retraimiento" ColumnName="Retraimiento" />
+                <ScalarProperty Name="Trastornos_del_sueño" ColumnName="Trastornos_del_sueño" />
+                <ScalarProperty Name="Trastornos_alimentarios" ColumnName="Trastornos_alimentarios" />
+                <ScalarProperty Name="Terrores_inexplicables" ColumnName="Terrores_inexplicables" />
+                <ScalarProperty Name="Disociación" ColumnName="Disociación" />
+                <ScalarProperty Name="Inflamación_zona_vaginal" ColumnName="Inflamación_zona_vaginal" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informe_Recibido">
+            <EntityTypeMapping TypeName="SE_ASIModel.Informe_Recibido">
+              <MappingFragment StoreEntitySet="Informe_Recibido">
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="ID_Informe" ColumnName="ID_Informe" />
+                <ScalarProperty Name="Gestando" ColumnName="Gestando" />
+                <ScalarProperty Name="Semen" ColumnName="Semen" />
+                <ScalarProperty Name="Comportamiento_suicida" ColumnName="Comportamiento_suicida" />
+                <ScalarProperty Name="Autolesiones" ColumnName="Autolesiones" />
+                <ScalarProperty Name="Enfermedad_transm_sexual" ColumnName="Enfermedad_transm_sexual" />
+                <ScalarProperty Name="Lesiones_genitales" ColumnName="Lesiones_genitales" />
+                <ScalarProperty Name="Inflamación_Vaginal" ColumnName="Inflamación_Vaginal" />
+                <ScalarProperty Name="Incontinencia_urinaria" ColumnName="Incontinencia_urinaria" />
+                <ScalarProperty Name="Dolores_de_abdomen" ColumnName="Dolores_de_abdomen" />
+                <ScalarProperty Name="Incontinencia_fecal" ColumnName="Incontinencia_fecal" />
+                <ScalarProperty Name="Conductas_Sexualizadas" ColumnName="Conductas_Sexualizadas" />
+                <ScalarProperty Name="Fugas" ColumnName="Fugas" />
+                <ScalarProperty Name="Consumo_problemático" ColumnName="Consumo_problemático" />
+                <ScalarProperty Name="Retraido" ColumnName="Retraido" />
+                <ScalarProperty Name="Problemas_al_dormir" ColumnName="Problemas_al_dormir" />
+                <ScalarProperty Name="Problemas_alimenticios" ColumnName="Problemas_alimenticios" />
+                <ScalarProperty Name="Terrores_sin_causa_aparente" ColumnName="Terrores_sin_causa_aparente" />
+                <ScalarProperty Name="Desconexión_mental" ColumnName="Desconexión_mental" />
+                <ScalarProperty Name="Relato" ColumnName="Relato" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SE_ASIModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Rol" ColumnName="ID_Rol" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion_Mail" ColumnName="Direccion_Mail" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

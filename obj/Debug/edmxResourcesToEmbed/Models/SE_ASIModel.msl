@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SE_ASIModelStoreContainer" CdmEntityContainer="SE_ASIEntities">
+    <EntitySetMapping Name="Diagnostico">
+      <EntityTypeMapping TypeName="SE_ASIModel.Diagnostico">
+        <MappingFragment StoreEntitySet="Diagnostico">
+          <ScalarProperty Name="Diagnostico_Experto" ColumnName="Diagnostico_Experto" />
+          <ScalarProperty Name="ID_Indicadores_Obtenidos" ColumnName="ID_Indicadores_Obtenidos" />
+          <ScalarProperty Name="ID_Diagnostico" ColumnName="ID_Diagnostico" />
+          <ScalarProperty Name="Confirmacion_Experto" ColumnName="Confirmacion_Experto" />
+          <ScalarProperty Name="Numero_Denuncia_Legal" ColumnName="Numero_Denuncia_Legal" />
+          <ScalarProperty Name="Confirmacion_Legal" ColumnName="Confirmacion_Legal" />
+          <ScalarProperty Name="Sospecha" ColumnName="Sospecha" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Descripcion_Abordaje" ColumnName="Descripcion_Abordaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indicadores_Obtenidos">
+      <EntityTypeMapping TypeName="SE_ASIModel.Indicadores_Obtenidos">
+        <MappingFragment StoreEntitySet="Indicadores_Obtenidos">
+          <ScalarProperty Name="ID_Indicadores_Obtenidos" ColumnName="ID_Indicadores_Obtenidos" />
+          <ScalarProperty Name="Embarazo" ColumnName="Embarazo" />
+          <ScalarProperty Name="Rango_Etario" ColumnName="Rango_Etario" />
+          <ScalarProperty Name="Restos_de_semen" ColumnName="Restos_de_semen" />
+          <ScalarProperty Name="ETS" ColumnName="ETS" />
+          <ScalarProperty Name="Lesion_zona_genital" ColumnName="Lesion_zona_genital" />
+          <ScalarProperty Name="Enuresis" ColumnName="Enuresis" />
+          <ScalarProperty Name="Dolores_abdominales" ColumnName="Dolores_abdominales" />
+          <ScalarProperty Name="Encopresis" ColumnName="Encopresis" />
+          <ScalarProperty Name="Relato_de_abuso" ColumnName="Relato_de_abuso" />
+          <ScalarProperty Name="Conductas_sexualizadas_no_esperables" ColumnName="Conductas_sexualizadas_no_esperables" />
+          <ScalarProperty Name="Fugas_del_hogar" ColumnName="Fugas_del_hogar" />
+          <ScalarProperty Name="Problemática_de_consumo" ColumnName="Problemática_de_consumo" />
+          <ScalarProperty Name="Conductas_autoagresivas" ColumnName="Conductas_autoagresivas" />
+          <ScalarProperty Name="Retraimiento" ColumnName="Retraimiento" />
+          <ScalarProperty Name="Trastornos_del_sueño" ColumnName="Trastornos_del_sueño" />
+          <ScalarProperty Name="Trastornos_alimentarios" ColumnName="Trastornos_alimentarios" />
+          <ScalarProperty Name="Terrores_inexplicables" ColumnName="Terrores_inexplicables" />
+          <ScalarProperty Name="Disociación" ColumnName="Disociación" />
+          <ScalarProperty Name="Inflamación_zona_vaginal" ColumnName="Inflamación_zona_vaginal" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Informe_Recibido">
+      <EntityTypeMapping TypeName="SE_ASIModel.Informe_Recibido">
+        <MappingFragment StoreEntitySet="Informe_Recibido">
+          <ScalarProperty Name="Edad" ColumnName="Edad" />
+          <ScalarProperty Name="ID_Informe" ColumnName="ID_Informe" />
+          <ScalarProperty Name="Gestando" ColumnName="Gestando" />
+          <ScalarProperty Name="Semen" ColumnName="Semen" />
+          <ScalarProperty Name="Comportamiento_suicida" ColumnName="Comportamiento_suicida" />
+          <ScalarProperty Name="Autolesiones" ColumnName="Autolesiones" />
+          <ScalarProperty Name="Enfermedad_transm_sexual" ColumnName="Enfermedad_transm_sexual" />
+          <ScalarProperty Name="Lesiones_genitales" ColumnName="Lesiones_genitales" />
+          <ScalarProperty Name="Inflamación_Vaginal" ColumnName="Inflamación_Vaginal" />
+          <ScalarProperty Name="Incontinencia_urinaria" ColumnName="Incontinencia_urinaria" />
+          <ScalarProperty Name="Dolores_de_abdomen" ColumnName="Dolores_de_abdomen" />
+          <ScalarProperty Name="Incontinencia_fecal" ColumnName="Incontinencia_fecal" />
+          <ScalarProperty Name="Conductas_Sexualizadas" ColumnName="Conductas_Sexualizadas" />
+          <ScalarProperty Name="Fugas" ColumnName="Fugas" />
+          <ScalarProperty Name="Consumo_problemático" ColumnName="Consumo_problemático" />
+          <ScalarProperty Name="Retraido" ColumnName="Retraido" />
+          <ScalarProperty Name="Problemas_al_dormir" ColumnName="Problemas_al_dormir" />
+          <ScalarProperty Name="Problemas_alimenticios" ColumnName="Problemas_alimenticios" />
+          <ScalarProperty Name="Terrores_sin_causa_aparente" ColumnName="Terrores_sin_causa_aparente" />
+          <ScalarProperty Name="Desconexión_mental" ColumnName="Desconexión_mental" />
+          <ScalarProperty Name="Relato" ColumnName="Relato" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SE_ASIModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID_Rol" ColumnName="ID_Rol" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion_Mail" ColumnName="Direccion_Mail" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
